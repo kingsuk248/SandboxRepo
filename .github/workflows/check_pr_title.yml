@@ -1,0 +1,14 @@
+on:
+  push:
+  pull_request:
+   types: [opened, synchronize, edited]
+
+jobs:
+  check-pr-title:
+    runs-on: ubuntu-20.04
+    steps:
+    - name : Print Title of PR
+      if: ${{ github.event.pull_request.title == '' }}
+      run: |
+        echo "ERROR: The Title of your PR must not be empty !"
+        exit 1
